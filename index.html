@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QReator - Modern QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header glass-panel">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        <rect x="14" y="14" width="3" height="3" rx="1"/>
+                        <rect x="18" y="14" width="3" height="3" rx="1"/>
+                        <rect x="14" y="18" width="3" height="3" rx="1"/>
+                        <rect x="18" y="18" width="3" height="3" rx="1"/>
+                    </svg>
+                    <h1>QReator</h1>
+                </div>
+                <button id="themeToggle" class="btn-icon glass-btn" aria-label="Toggle theme">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-grid">
+                <!-- Left Panel - Input Form -->
+                <div class="input-panel glass-panel">
+                    <div class="panel-header">
+                        <h2>Generate QR Code</h2>
+                    </div>
+                    
+                    <!-- Type Tabs -->
+                    <div class="tabs">
+                        <button class="tab-btn active" data-type="url">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                            </svg>
+                            URL
+                        </button>
+                        <button class="tab-btn" data-type="text">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="17" y1="10" x2="3" y2="10"/>
+                                <line x1="21" y1="6" x2="3" y2="6"/>
+                                <line x1="21" y1="14" x2="3" y2="14"/>
+                                <line x1="17" y1="18" x2="3" y2="18"/>
+                            </svg>
+                            Text
+                        </button>
+                        <button class="tab-btn" data-type="email">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            Email
+                        </button>
+                        <button class="tab-btn" data-type="phone">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            Phone
+                        </button>
+                        <button class="tab-btn" data-type="sms">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            SMS
+                        </button>
+                        <button class="tab-btn" data-type="wifi">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                                <line x1="12" y1="20" x2="12.01" y2="20"/>
+                            </svg>
+                            WiFi
+                        </button>
+                    </div>
+
+                    <!-- Content Forms -->
+                    <div class="tab-content">
+                        <!-- URL Form -->
+                        <div id="urlForm" class="form-section active">
+                            <div class="form-group">
+                                <label class="form-label">Website URL</label>
+                                <input type="url" id="urlInput" class="form-control glass-input" placeholder="https://example.com" required>
+                            </div>
+                        </div>
+
+                        <!-- Text Form -->
+                        <div id="textForm" class="form-section">
+                            <div class="form-group">
+                                <label class="form-label">Text Content</label>
+                                <textarea id="textInput" class="form-control glass-input" rows="4" placeholder="Enter your text here..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Email Form -->
+                        <div id="emailForm" class="form-section">
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" id="emailAddress" class="form-control glass-input" placeholder="user@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Subject (Optional)</label>
+                                <input type="text" id="emailSubject" class="form-control glass-input" placeholder="Email subject">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message (Optional)</label>
+                                <textarea id="emailBody" class="form-control glass-input" rows="3" placeholder="Email message"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Phone Form -->
+                        <div id="phoneForm" class="form-section">
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" id="phoneNumber" class="form-control glass-input" placeholder="+1234567890">
+                            </div>
+                        </div>
+
+                        <!-- SMS Form -->
+                        <div id="smsForm" class="form-section">
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" id="smsNumber" class="form-control glass-input" placeholder="+1234567890">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message</label>
+                                <textarea id="smsMessage" class="form-control glass-input" rows="3" placeholder="SMS message"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- WiFi Form -->
+                        <div id="wifiForm" class="form-section">
+                            <div class="form-group">
+                                <label class="form-label">Network Name (SSID)</label>
+                                <input type="text" id="wifiSSID" class="form-control glass-input" placeholder="Network name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="text" id="wifiPassword" class="form-control glass-input" placeholder="Network password">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Security Type</label>
+                                <select id="wifiSecurity" class="form-control glass-input">
+                                    <option value="WPA">WPA/WPA2</option>
+                                    <option value="WPA">WPA3/WPA3 Personal</option>
+                                    <option value="WEP">WEP</option>
+                                    <option value="">None</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="wifiHidden">
+                                    <span>Hidden Network</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customization Options -->
+                    <div class="customization-section">
+                        <h3 class="section-title">Customize QR Code</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Size: <span id="sizeValue">256</span>px</label>
+                            <input type="range" id="qrSize" class="range-slider" min="128" max="512" value="256" step="32">
+                        </div>
+
+                        <div class="color-group">
+                            <div class="form-group">
+                                <label class="form-label">Foreground Color</label>
+                                <input type="color" id="fgColor" class="color-picker" value="#000000">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Background Color</label>
+                                <input type="color" id="bgColor" class="color-picker" value="#ffffff">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Error Correction Level</label>
+                            <select id="errorLevel" class="form-control glass-input">
+                                <option value="L">Low (7%)</option>
+                                <option value="M" selected>Medium (15%)</option>
+                                <option value="Q">Quartile (25%)</option>
+                                <option value="H">High (30%)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Add Logo (Optional)</label>
+                            <input type="file" id="logoUpload" class="file-input" accept="image/*">
+                            <div id="logoPreview" class="logo-preview"></div>
+                        </div>
+                    </div>
+
+                    <button id="generateBtn" class="btn btn-primary glass-btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
+                            <polyline points="7.5 19.79 7.5 14.6 3 12"/>
+                            <polyline points="21 12 16.5 14.6 16.5 19.79"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                        Generate QR Code
+                    </button>
+                </div>
+
+                <!-- Right Panel - Preview & Actions -->
+                <div class="preview-panel glass-panel">
+                    <div class="panel-header">
+                        <h2>QR Code Preview</h2>
+                    </div>
+                    
+                    <div id="qrPreview" class="qr-display glass-content">
+                        <div class="placeholder-state">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+                                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                                <rect x="14" y="14" width="3" height="3" rx="1"/>
+                                <rect x="18" y="14" width="3" height="3" rx="1"/>
+                                <rect x="14" y="18" width="3" height="3" rx="1"/>
+                                <rect x="18" y="18" width="3" height="3" rx="1"/>
+                            </svg>
+                            <p>Your QR code will appear here</p>
+                        </div>
+                    </div>
+
+                    <div id="qrActions" class="action-buttons" style="display: none;">
+                        <button id="downloadBtn" class="btn btn-primary glass-btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download
+                        </button>
+                        <button id="shareBtn" class="btn btn-secondary glass-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="18" cy="5" r="3"/>
+                                <circle cx="6" cy="12" r="3"/>
+                                <circle cx="18" cy="19" r="3"/>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                            </svg>
+                            Share
+                        </button>
+                        <button id="copyBtn" class="btn btn-secondary glass-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                            Copy
+                        </button>
+                    </div>
+
+                    <!-- Additional Features -->
+                    <div class="extra-features">
+                        <button id="historyBtn" class="feature-btn glass-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            History
+                        </button>
+                        <button id="batchBtn" class="feature-btn glass-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="12" y1="18" x2="12" y2="12"/>
+                                <line x1="9" y1="15" x2="15" y2="15"/>
+                            </svg>
+                            Batch Generate
+                        </button>
+                        <button id="scanBtn" class="feature-btn glass-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                            Scan QR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer glass-panel">
+            <p>Made with ❤️ by Shivansh Bagga</p>
+        </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- History Modal -->
+    <div id="historyModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>QR Code History</h2>
+                <button class="modal-close" data-modal="historyModal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="historyList" class="history-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Batch Generate Modal -->
+    <div id="batchModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>Batch Generate QR Codes</h2>
+                <button class="modal-close" data-modal="batchModal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="info-text">Enter multiple URLs or text entries (one per line)</p>
+                <textarea id="batchInput" class="form-control glass-input" rows="8" placeholder="https://example1.com&#10;https://example2.com&#10;https://example3.com"></textarea>
+                <button id="batchGenerateBtn" class="btn btn-primary glass-btn-primary" style="margin-top: 16px; width: 100%;">
+                    Generate All
+                </button>
+                <div id="batchResults" class="batch-results"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scan Modal -->
+    <div id="scanModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>Scan QR Code</h2>
+                <button class="modal-close" data-modal="scanModal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="info-text">Upload an image containing a QR code</p>
+                <input type="file" id="scanUpload" class="file-input" accept="image/*">
+                <div id="scanResult" class="scan-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="utils.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
